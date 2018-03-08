@@ -7,6 +7,7 @@ var bodyParser = require('body-parser');
 var expressLayouts = require('express-ejs-layouts');
 
 var index = require('./routes/index');
+var tasks = require('./routes/tasks');
 
 var app = express();
 
@@ -26,6 +27,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(expressLayouts);
 
 app.use('/', index);
+app.use('/tasks', tasks);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
