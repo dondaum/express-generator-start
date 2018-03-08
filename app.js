@@ -4,11 +4,9 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var expressLayouts = require('express-ejs-layouts');
 
 var index = require('./routes/index');
-var users = require('./routes/users');
-var wiki = require('./routes/wiki');
-var task = require('./routes/task');
 
 var app = express();
 
@@ -24,10 +22,10 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+// use ejs layout engine
+app.use(expressLayouts);
+
 app.use('/', index);
-app.use('/users', users);
-app.use('/wiki', wiki);
-app.use('/task', task);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
